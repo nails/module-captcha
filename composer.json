@@ -1,0 +1,42 @@
+{
+    "name": "nailsapp/module-captcha",
+    "keywords": ["Nails", "Shed Collective", "CodeIgniter", "Captcha Module"],
+    "homepage": "http://nailsapp.co.uk/modules/captcha",
+    "description": "This is the \"Captcha\" module for Nails and brings an interface for easily using captchas in your application.",
+    "license": "MIT",
+    "authors":
+    [
+        {
+            "name": "Pablo de la Pena",
+            "email": "p@nailsapp.co.uk",
+            "homepage": "http://nailsapp.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "support":
+    {
+        "email": "hello@nailsapp.co.uk"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require":
+    {
+        "nailsapp/common": "dev-develop"
+    },
+    "require-dev":
+    {
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload":
+    {
+        "psr-4": {"Nails\\Captcha\\": "src/"}
+    },
+    "extra":
+    {
+        "nails" :
+        {
+            "moduleName": "captcha",
+            "type": "module"
+        }
+    }
+}
