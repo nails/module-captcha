@@ -37,7 +37,8 @@ $oInput = nailsFactory('service', 'Input');
                     'loadSettingsDriverTable',
                     'enabled_drivers',
                     $captcha_drivers,
-                    $captcha_drivers_enabled
+                    $captcha_drivers_enabled,
+                    false
                 )?>
             </div>
             <?php

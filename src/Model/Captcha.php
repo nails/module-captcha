@@ -12,6 +12,7 @@
 namespace Nails\Captcha\Model;
 
 use Nails\Factory;
+use Nails\Captcha\Exception\CaptchaDriverException;
 
 class Captcha
 {
@@ -19,23 +20,35 @@ class Captcha
     {
         $oDriverModel = Factory::model('CaptchaDriver', 'nailsapp/module-captcha');
         $aEnabled = $oDriverModel->getEnabled();
-        dump($aEnabled);
+        if (!empty($aEnabled)) {
+            $this->oDriver = $oDriverModel->getInstance($aEnabled[0]->slug);
+        }
     }
 
     // --------------------------------------------------------------------------
 
     /**
      * Returns the form markup for the captcha
-     * @return string
+     * @return \stdClass
      */
     public function generate()
     {
-        $sSiteKey = appSetting('site_key', 'nailsapp/module-captcha');
+        if (!empty($this->oDriver)) {
 
-        if ($sSiteKey) {
+            $oResult = $this->oDriver->generate();
+
+            if (!property_exists($oResult, 'label')) {
+                throw new CaptchaDriverException('Driver must return an object with a label property.', 1);
+            }
+
+            if (!property_exists($oResult, 'html')) {
+                throw new CaptchaDriverException('Driver must return an object with a html property.', 1);
+            }
+
+            return $oResult;
 
         } else {
-            return 'CAPTCHA HTML';
+            return '@todo - driver not enabled';
         }
     }
 
@@ -43,10 +56,15 @@ class Captcha
 
     /**
      * Verifies a user's captcha entry
-     * @return string
+     * @return boolean
      */
     public function verify()
     {
+        if (!empty($this->oDriver)) {
+            return $this->oDriver->verify();
+        } else {
+            throw new CaptchaDriverException('No Captcha driver is enabled.', 1);
 
+        }
     }
 }

@@ -4,7 +4,7 @@
  * This class registers some handlers for Invoicing & Payment settings
  *
  * @package     Nails
- * @subpackage  module-invoice
+ * @subpackage  module-captcha
  * @category    AdminController
  * @author      Nails Dev Team
  * @link
@@ -64,7 +64,7 @@ class Settings extends Base
             $aSettings = array(
 
                 //  Captcha Drivers
-                'enabled_drivers' => $this->input->post('enabled_drivers') ?: array(),
+                'enabled_drivers' => array_filter((array) $this->input->post('enabled_drivers')) ?: array(),
             );
 
             // --------------------------------------------------------------------------
@@ -84,12 +84,12 @@ class Settings extends Base
 
                     $oAppSettingModel = Factory::model('AppSetting');
 
-                    if (!$oAppSettingModel->set($aSettings, 'nailsapp/module-invoice')) {
+                    if (!$oAppSettingModel->set($aSettings, 'nailsapp/module-captcha')) {
                         throw new \Exception($oAppSettingModel->lastError(), 1);
                     }
 
                     $oDb->trans_commit();
-                    $this->data['success'] = 'Invoice &amp; Payment settings were saved.';
+                    $this->data['success'] = 'Captcha settings were saved.';
 
                 } catch (\Exception $e) {
 
@@ -112,7 +112,7 @@ class Settings extends Base
         $oDriverModel                          = Factory::model('CaptchaDriver', 'nailsapp/module-captcha');
         $this->data['captcha_drivers']         = $oDriverModel->getAll();
         $this->data['captcha_drivers_enabled'] = $oDriverModel->getEnabledSlugs();
-dumpanddie($this->data['captcha_drivers']);
+
         Helper::loadView('index');
     }
 }
