@@ -22,7 +22,7 @@
     "require":
     {
         "nailsapp/common": "dev-develop",
-        "nailsapp/driver-captcha-google": "dev-develop"
+        "nailsapp/driver-captcha-recaptcha": "dev-develop"
     },
     "require-dev":
     {
