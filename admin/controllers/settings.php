@@ -43,7 +43,7 @@ class Settings extends Base
      */
     public static function permissions()
     {
-        $aPermissions = parent::aPermissions();
+        $aPermissions = parent::permissions();
 
         $aPermissions['driver'] = 'Can update driver settings';
 
