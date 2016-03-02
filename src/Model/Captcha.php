@@ -16,6 +16,10 @@ use Nails\Captcha\Exception\CaptchaDriverException;
 
 class Captcha
 {
+    use \Nails\Common\Traits\ErrorHandling;
+
+    // --------------------------------------------------------------------------
+
     public function __construct()
     {
         $oDriverModel = Factory::model('CaptchaDriver', 'nailsapp/module-captcha');
@@ -48,7 +52,9 @@ class Captcha
             return $oResult;
 
         } else {
-            return '@todo - driver not enabled';
+
+            $this->setError('No driver loaded.');
+            return null;
         }
     }
 
@@ -64,7 +70,6 @@ class Captcha
             return $this->oDriver->verify();
         } else {
             throw new CaptchaDriverException('No Captcha driver is enabled.', 1);
-
         }
     }
 }
