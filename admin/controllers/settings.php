@@ -58,35 +58,33 @@ class Settings extends Base
      */
     public function index()
     {
+        if (!userHasPermission('admin:captcha:settings:*')) {
+            unauthorised();
+        }
+
+        $oDb                 = Factory::service('Database');
+        $oAppSettingModel    = Factory::model('AppSetting');
+        $oCaptchaDriverModel = Factory::model('CaptchaDriver', 'nailsapp/module-captcha');
+
         //  Process POST
         if ($this->input->post()) {
 
-            $aSettings = array(
-
-                //  Captcha Drivers
-                'enabled_drivers' => array_filter((array) $this->input->post('enabled_drivers')) ?: array(),
-            );
-
-            // --------------------------------------------------------------------------
+            //  Settings keys
+            $sKeyCaptchaDriver = $oCaptchaDriverModel->getSettingKey();
 
             //  Validation
             $oFormValidation = Factory::service('FormValidation');
 
-            $oFormValidation->set_rules('enabled_payment_drivers', '', '');
+            $oFormValidation->set_rules($sKeyCaptchaDriver, '', '');
 
             if ($oFormValidation->run()) {
-
-                $oDb = Factory::service('Database');
 
                 try {
 
                     $oDb->trans_begin();
 
-                    $oAppSettingModel = Factory::model('AppSetting');
-
-                    if (!$oAppSettingModel->set($aSettings, 'nailsapp/module-captcha')) {
-                        throw new \Exception($oAppSettingModel->lastError(), 1);
-                    }
+                    //  Drivers
+                    $oCaptchaDriverModel->saveEnabled($this->input->post($sKeyCaptchaDriver));
 
                     $oDb->trans_commit();
                     $this->data['success'] = 'Captcha settings were saved.';
@@ -106,12 +104,9 @@ class Settings extends Base
         // --------------------------------------------------------------------------
 
         //  Get data
-        $this->data['settings'] = appSetting(null, 'nailsapp/module-captcha', true);
-
-        //  Captcha drivers
-        $oDriverModel                          = Factory::model('CaptchaDriver', 'nailsapp/module-captcha');
-        $this->data['captcha_drivers']         = $oDriverModel->getAll();
-        $this->data['captcha_drivers_enabled'] = $oDriverModel->getEnabledSlugs();
+        $this->data['settings']                = appSetting(null, 'nailsapp/module-captcha', true);
+        $this->data['captcha_drivers']         = $oCaptchaDriverModel->getAll();
+        $this->data['captcha_drivers_enabled'] = $oCaptchaDriverModel->getEnabledSlug();
 
         Helper::loadView('index');
     }

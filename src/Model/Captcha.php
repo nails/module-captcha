@@ -23,9 +23,9 @@ class Captcha
     public function __construct()
     {
         $oDriverModel = Factory::model('CaptchaDriver', 'nailsapp/module-captcha');
-        $aEnabled = $oDriverModel->getEnabled();
-        if (!empty($aEnabled)) {
-            $this->oDriver = $oDriverModel->getInstance($aEnabled[0]->slug);
+        $sEnabled     = $oDriverModel->getEnabledSlug();
+        if (!empty($sEnabled)) {
+            $this->oDriver = $oDriverModel->getInstance($sEnabled);
         }
     }
 

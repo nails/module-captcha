@@ -35,10 +35,8 @@ $oInput = nailsFactory('service', 'Input');
             <div class="tab-page tab-drivers">
                 <?=adminHelper(
                     'loadSettingsDriverTable',
-                    'enabled_drivers',
-                    $captcha_drivers,
-                    $captcha_drivers_enabled,
-                    false
+                    'CaptchaDriver',
+                    'nailsapp/module-captcha'
                 )?>
             </div>
             <?php
