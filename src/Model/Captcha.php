@@ -66,10 +66,21 @@ class Captcha
      */
     public function verify()
     {
-        if (!empty($this->oDriver)) {
+        if ($this->isEnabled()) {
             return $this->oDriver->verify();
         } else {
             throw new CaptchaDriverException('No Captcha driver is enabled.', 1);
         }
+    }
+
+    // --------------------------------------------------------------------------
+
+    /**
+     * Determines whether a driver has been enabled
+     * @return boolean
+     */
+    public function isEnabled()
+    {
+        return !empty($this->oDriver);
     }
 }
