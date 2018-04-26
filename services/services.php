@@ -1,8 +1,8 @@
 <?php
 
-return array(
-    'models' => array(
-        'Captcha' => function () {
+return [
+    'models'    => [
+        'Captcha'       => function () {
             if (class_exists('\App\Captcha\Model\Captcha')) {
                 return new \App\Captcha\Model\Captcha();
             } else {
@@ -15,6 +15,15 @@ return array(
             } else {
                 return new \Nails\Captcha\Model\Driver();
             }
-        }
-    )
-);
+        },
+    ],
+    'factories' => [
+        'CaptchaForm' => function () {
+            if (class_exists('\App\Captcha\Factory\CaptchaForm')) {
+                return new \App\Captcha\Factory\CaptchaForm();
+            } else {
+                return new \Nails\Captcha\Factory\CaptchaForm();
+            }
+        },
+    ],
+];

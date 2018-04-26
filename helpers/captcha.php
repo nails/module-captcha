@@ -16,11 +16,11 @@ if (!function_exists('captchaGenerate')) {
 
     /**
      * Returns the form markup for the captcha
-     * @return string
+     * @return \Nails\Captcha\Factory\CaptchaForm
      */
     function captchaGenerate()
     {
-        $oCaptcha = Factory::model('Captcha', 'nailsapp/module-captcha');
+        $oCaptcha = Factory::service('Captcha', 'nailsapp/module-captcha');
         return $oCaptcha->generate();
     }
 }
@@ -29,11 +29,11 @@ if (!function_exists('captchaVerify')) {
 
     /**
      * Verifies a user's captcha entry
-     * @return string
+     * @return bool
      */
     function captchaVerify()
     {
-        $oCaptcha = Factory::model('Captcha', 'nailsapp/module-captcha');
+        $oCaptcha = Factory::service('Captcha', 'nailsapp/module-captcha');
         return $oCaptcha->verify();
     }
 }
@@ -46,7 +46,7 @@ if (!function_exists('captchaError')) {
      */
     function captchaError()
     {
-        $oCaptcha = Factory::model('Captcha', 'nailsapp/module-captcha');
+        $oCaptcha = Factory::service('Captcha', 'nailsapp/module-captcha');
         return $oCaptcha->lastError();
     }
 }

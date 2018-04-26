@@ -5,14 +5,15 @@
  *
  * @package     Nails
  * @subpackage  module-captcha
- * @category    Model
+ * @category    Service
  * @author      Nails Dev Team
  */
 
-namespace Nails\Captcha\Model;
+namespace Nails\Captcha\Service;
 
 use Nails\Factory;
 use Nails\Captcha\Exception\CaptchaDriverException;
+use Nails\Captcha\Factory\CaptchaForm;
 
 class Captcha
 {
@@ -33,29 +34,34 @@ class Captcha
 
     /**
      * Returns the form markup for the captcha
-     * @return \stdClass
+     * @return CaptchaForm
      */
     public function generate()
     {
-        if (!empty($this->oDriver)) {
+        try {
 
-            $oResult = $this->oDriver->generate();
-
-            if (!property_exists($oResult, 'label')) {
-                throw new CaptchaDriverException('Driver must return an object with a label property.', 1);
+            if (!$this->isEnabled()) {
+                throw new CaptchaDriverException(
+                    'Captcha driver has not been configured.'
+                );
             }
 
-            if (!property_exists($oResult, 'html')) {
-                throw new CaptchaDriverException('Driver must return an object with a html property.', 1);
+            $oResponse = $this->oDriver->generate();
+
+            if (!($oResponse instanceof CaptchaForm)) {
+                throw new CaptchaDriverException(
+                    'Driver must return an instance of \Nails\Captcha\Factory\CaptchaForm.'
+                );
             }
 
-            return $oResult;
-
-        } else {
-
-            $this->setError('No driver loaded.');
-            return null;
+        } catch (\Exception $e) {
+            $oResponse = Factory::factory('CaptchaForm', 'nailsapp/module-capture');
+            $oResponse->setHtml(
+                '<p style="color: red; padding: 1rem; border: 1px solid red;">ERROR: ' . $e->getMessage() . '</p>'
+            );
         }
+
+        return $oResponse;
     }
 
     // --------------------------------------------------------------------------
@@ -69,7 +75,7 @@ class Captcha
         if ($this->isEnabled()) {
             return $this->oDriver->verify();
         } else {
-            throw new CaptchaDriverException('No Captcha driver is enabled.', 1);
+            throw new CaptchaDriverException('Captcha driver has not been configured.', 1);
         }
     }
 

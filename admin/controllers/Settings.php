@@ -63,11 +63,11 @@ class Settings extends Base
         }
 
         $oDb                 = Factory::service('Database');
+        $oInput              = Factory::service('Input');
         $oAppSettingModel    = Factory::model('AppSetting');
         $oCaptchaDriverModel = Factory::model('CaptchaDriver', 'nailsapp/module-captcha');
 
-        //  Process POST
-        if ($this->input->post()) {
+        if ($oInput->post()) {
 
             //  Settings keys
             $sKeyCaptchaDriver = $oCaptchaDriverModel->getSettingKey();
@@ -75,7 +75,7 @@ class Settings extends Base
             //  Validation
             $oFormValidation = Factory::service('FormValidation');
 
-            $oFormValidation->set_rules($sKeyCaptchaDriver, '', '');
+            $oFormValidation->set_rules($sKeyCaptchaDriver, '', 'required');
 
             if ($oFormValidation->run()) {
 
@@ -84,13 +84,12 @@ class Settings extends Base
                     $oDb->trans_begin();
 
                     //  Drivers
-                    $oCaptchaDriverModel->saveEnabled($this->input->post($sKeyCaptchaDriver));
+                    $oCaptchaDriverModel->saveEnabled($oInput->post($sKeyCaptchaDriver));
 
                     $oDb->trans_commit();
                     $this->data['success'] = 'Captcha settings were saved.';
 
                 } catch (\Exception $e) {
-
                     $oDb->trans_rollback();
                     $this->data['error'] = 'There was a problem saving settings. ' . $e->getMessage();
                 }

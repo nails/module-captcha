@@ -38,7 +38,12 @@
         {
             "moduleName": "captcha",
             "type": "module",
-            "namespace": "Nails\\Captcha\\"
+            "namespace": "Nails\\Captcha\\",
+            "autoload": {
+                "helpers": [
+                    "captcha"
+                ]
+            }
         }
     }
 }
