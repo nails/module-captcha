@@ -3,10 +3,10 @@
 return [
     'services'    => [
         'Captcha'       => function () {
-            if (class_exists('\App\Captcha\Model\Captcha')) {
-                return new \App\Captcha\Model\Captcha();
+            if (class_exists('\App\Captcha\Service\Captcha')) {
+                return new \App\Captcha\Service\Captcha();
             } else {
-                return new \Nails\Captcha\Model\Captcha();
+                return new \Nails\Captcha\Service\Captcha();
             }
         },
     ],
