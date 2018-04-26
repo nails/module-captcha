@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'models'    => [
+    'services'    => [
         'Captcha'       => function () {
             if (class_exists('\App\Captcha\Model\Captcha')) {
                 return new \App\Captcha\Model\Captcha();
@@ -9,6 +9,8 @@ return [
                 return new \Nails\Captcha\Model\Captcha();
             }
         },
+    ],
+    'models'  => [
         'CaptchaDriver' => function () {
             if (class_exists('\App\Captcha\Model\Captcha')) {
                 return new \App\Captcha\Model\Driver();
