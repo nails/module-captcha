@@ -55,7 +55,7 @@ class Captcha
             }
 
         } catch (\Exception $e) {
-            $oResponse = Factory::factory('CaptchaForm', 'nailsapp/module-capture');
+            $oResponse = Factory::factory('CaptchaForm', 'nailsapp/module-captcha');
             $oResponse->setHtml(
                 '<p style="color: red; padding: 1rem; border: 1px solid red;">ERROR: ' . $e->getMessage() . '</p>'
             );
