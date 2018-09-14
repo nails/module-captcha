@@ -23,7 +23,7 @@ class Captcha
 
     public function __construct()
     {
-        $oDriverModel = Factory::model('CaptchaDriver', 'nailsapp/module-captcha');
+        $oDriverModel = Factory::model('CaptchaDriver', 'nails/module-captcha');
         $sEnabled     = $oDriverModel->getEnabledSlug();
         if (!empty($sEnabled)) {
             $this->oDriver = $oDriverModel->getInstance($sEnabled);
@@ -55,7 +55,7 @@ class Captcha
             }
 
         } catch (\Exception $e) {
-            $oResponse = Factory::factory('CaptchaForm', 'nailsapp/module-captcha');
+            $oResponse = Factory::factory('CaptchaForm', 'nails/module-captcha');
             $oResponse->setHtml(
                 '<p style="color: red; padding: 1rem; border: 1px solid red;">ERROR: ' . $e->getMessage() . '</p>'
             );

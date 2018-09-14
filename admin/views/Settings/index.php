@@ -35,7 +35,7 @@ $oInput = \Nails\Factory::service('Input');
                 <?=adminHelper(
                     'loadSettingsDriverTable',
                     'CaptchaDriver',
-                    'nailsapp/module-captcha'
+                    'nails/module-captcha'
                 )?>
             </div>
             <?php

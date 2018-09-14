@@ -20,7 +20,7 @@ if (!function_exists('captchaGenerate')) {
      */
     function captchaGenerate()
     {
-        $oCaptcha = Factory::service('Captcha', 'nailsapp/module-captcha');
+        $oCaptcha = Factory::service('Captcha', 'nails/module-captcha');
         return $oCaptcha->generate();
     }
 }
@@ -33,7 +33,7 @@ if (!function_exists('captchaVerify')) {
      */
     function captchaVerify()
     {
-        $oCaptcha = Factory::service('Captcha', 'nailsapp/module-captcha');
+        $oCaptcha = Factory::service('Captcha', 'nails/module-captcha');
         return $oCaptcha->verify();
     }
 }
@@ -46,7 +46,7 @@ if (!function_exists('captchaError')) {
      */
     function captchaError()
     {
-        $oCaptcha = Factory::service('Captcha', 'nailsapp/module-captcha');
+        $oCaptcha = Factory::service('Captcha', 'nails/module-captcha');
         return $oCaptcha->lastError();
     }
 }

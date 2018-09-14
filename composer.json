@@ -1,5 +1,5 @@
 {
-    "name": "nailsapp/module-captcha",
+    "name": "nails/module-captcha",
     "keywords": ["Nails", "Shed Collective", "CodeIgniter", "Captcha Module"],
     "homepage": "http://nailsapp.co.uk/modules/captcha",
     "description": "This is the \"Captcha\" module for Nails and brings an interface for easily using captchas in your application.",
@@ -21,8 +21,8 @@
     "prefer-stable": true,
     "require":
     {
-        "nailsapp/common": "dev-develop",
-        "nailsapp/driver-captcha-recaptcha": "dev-develop"
+        "nails/common": "dev-develop",
+        "nails/driver-captcha-recaptcha": "dev-develop"
     },
     "require-dev":
     {

@@ -16,7 +16,7 @@ use Nails\Common\Model\BaseDriver;
 
 class Driver extends BaseDriver
 {
-    protected $sModule         = 'nailsapp/module-captcha';
+    protected $sModule         = 'nails/module-captcha';
     protected $sType           = 'captcha';
     protected $bEnableMultiple = false;
 }

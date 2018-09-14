@@ -24,7 +24,7 @@ class Settings extends Base
      */
     public static function announce()
     {
-        $oNavGroup = Factory::factory('Nav', 'nailsapp/module-admin');
+        $oNavGroup = Factory::factory('Nav', 'nails/module-admin');
         $oNavGroup->setLabel('Settings');
         $oNavGroup->setIcon('fa-wrench');
 
@@ -65,7 +65,7 @@ class Settings extends Base
         $oDb                 = Factory::service('Database');
         $oInput              = Factory::service('Input');
         $oAppSettingModel    = Factory::model('AppSetting');
-        $oCaptchaDriverModel = Factory::model('CaptchaDriver', 'nailsapp/module-captcha');
+        $oCaptchaDriverModel = Factory::model('CaptchaDriver', 'nails/module-captcha');
 
         if ($oInput->post()) {
 
@@ -103,7 +103,7 @@ class Settings extends Base
         // --------------------------------------------------------------------------
 
         //  Get data
-        $this->data['settings']                = appSetting(null, 'nailsapp/module-captcha', true);
+        $this->data['settings']                = appSetting(null, 'nails/module-captcha', true);
         $this->data['captcha_drivers']         = $oCaptchaDriverModel->getAll();
         $this->data['captcha_drivers_enabled'] = $oCaptchaDriverModel->getEnabledSlug();
 
