@@ -20,6 +20,7 @@ class Settings extends Base
 {
     /**
      * Announces this controller's navGroups
+     *
      * @return stdClass
      */
     public static function announce()
@@ -39,6 +40,7 @@ class Settings extends Base
 
     /**
      * Returns an array of permissions which can be configured for the user
+     *
      * @return array
      */
     public static function permissions(): array
@@ -54,6 +56,7 @@ class Settings extends Base
 
     /**
      * Manage Captcha settings
+     *
      * @return void
      */
     public function index()
@@ -64,7 +67,6 @@ class Settings extends Base
 
         $oDb                 = Factory::service('Database');
         $oInput              = Factory::service('Input');
-        $oAppSettingModel    = Factory::model('AppSetting');
         $oCaptchaDriverModel = Factory::model('CaptchaDriver', 'nails/module-captcha');
 
         if ($oInput->post()) {
