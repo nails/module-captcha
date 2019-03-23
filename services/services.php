@@ -9,13 +9,11 @@ return [
                 return new \Nails\Captcha\Service\Captcha();
             }
         },
-    ],
-    'models'  => [
         'CaptchaDriver' => function () {
-            if (class_exists('\App\Captcha\Model\Captcha')) {
-                return new \App\Captcha\Model\Driver();
+            if (class_exists('\App\Captcha\Service\Captcha')) {
+                return new \App\Captcha\Service\Driver();
             } else {
-                return new \Nails\Captcha\Model\Driver();
+                return new \Nails\Captcha\Service\Driver();
             }
         },
     ],

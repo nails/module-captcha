@@ -1,16 +1,16 @@
 <?php
 
 /**
- * This model manages the GeoCoding drivers
+ * This service manages the GeoCoding drivers
  *
  * @package     Nails
  * @subpackage  module-geo-code
- * @category    Model
+ * @category    Service
  * @author      Nails Dev Team
  * @link
  */
 
-namespace Nails\Captcha\Model;
+namespace Nails\Captcha\Service;
 
 use Nails\Common\Model\BaseDriver;
 

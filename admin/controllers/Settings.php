@@ -65,14 +65,14 @@ class Settings extends Base
             unauthorised();
         }
 
-        $oDb                 = Factory::service('Database');
-        $oInput              = Factory::service('Input');
-        $oCaptchaDriverModel = Factory::model('CaptchaDriver', 'nails/module-captcha');
+        $oDb                   = Factory::service('Database');
+        $oInput                = Factory::service('Input');
+        $oCaptchaDriverService = Factory::service('CaptchaDriver', 'nails/module-captcha');
 
         if ($oInput->post()) {
 
             //  Settings keys
-            $sKeyCaptchaDriver = $oCaptchaDriverModel->getSettingKey();
+            $sKeyCaptchaDriver = $oCaptchaDriverService->getSettingKey();
 
             //  Validation
             $oFormValidation = Factory::service('FormValidation');
@@ -86,7 +86,7 @@ class Settings extends Base
                     $oDb->trans_begin();
 
                     //  Drivers
-                    $oCaptchaDriverModel->saveEnabled($oInput->post($sKeyCaptchaDriver));
+                    $oCaptchaDriverService->saveEnabled($oInput->post($sKeyCaptchaDriver));
 
                     $oDb->trans_commit();
                     $this->data['success'] = 'Captcha settings were saved.';
@@ -106,8 +106,8 @@ class Settings extends Base
 
         //  Get data
         $this->data['settings']                = appSetting(null, 'nails/module-captcha', true);
-        $this->data['captcha_drivers']         = $oCaptchaDriverModel->getAll();
-        $this->data['captcha_drivers_enabled'] = $oCaptchaDriverModel->getEnabledSlug();
+        $this->data['captcha_drivers']         = $oCaptchaDriverService->getAll();
+        $this->data['captcha_drivers_enabled'] = $oCaptchaDriverService->getEnabledSlug();
 
         Helper::loadView('index');
     }

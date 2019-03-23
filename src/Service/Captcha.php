@@ -23,10 +23,10 @@ class Captcha
 
     public function __construct()
     {
-        $oDriverModel = Factory::model('CaptchaDriver', 'nails/module-captcha');
-        $sEnabled     = $oDriverModel->getEnabledSlug();
+        $oDriverService = Factory::service('CaptchaDriver', 'nails/module-captcha');
+        $sEnabled       = $oDriverService->getEnabledSlug();
         if (!empty($sEnabled)) {
-            $this->oDriver = $oDriverModel->getInstance($sEnabled);
+            $this->oDriver = $oDriverService->getInstance($sEnabled);
         }
     }
 
