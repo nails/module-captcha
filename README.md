@@ -6,5 +6,3 @@
 [![Join the chat on Slack!](https://now-examples-slackin-rayibnpwqe.now.sh/badge.svg)](https://nails-app.slack.com/shared_invite/MTg1NDcyNjI0ODcxLTE0OTUwMzA1NTYtYTZhZjc5YjExMQ)
 
 This is the "Captcha" module for Nails and brings an interface for easily using captchas in your application.
-
-http://nailsapp.co.uk/modules/captcha
