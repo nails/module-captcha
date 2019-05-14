@@ -6,12 +6,14 @@ class CaptchaForm
 {
     /**
      * The label
+     *
      * @var string
      */
     protected $sLabel;
 
     /**
      * The HTML
+     *
      * @var string
      */
     protected $sHtml;
@@ -25,7 +27,7 @@ class CaptchaForm
      *
      * @return $this
      */
-    public function setLabel($sLabel)
+    public function setLabel(string $sLabel): CaptchaForm
     {
         $this->sLabel = $sLabel;
         return $this;
@@ -35,9 +37,10 @@ class CaptchaForm
 
     /**
      * Returns the label
+     *
      * @return string
      */
-    public function getLabel()
+    public function getLabel(): ?string
     {
         return $this->sLabel;
     }
@@ -51,7 +54,7 @@ class CaptchaForm
      *
      * @return $this
      */
-    public function setHtml($sHtml)
+    public function setHtml(string $sHtml): CaptchaForm
     {
         $this->sHtml = $sHtml;
         return $this;
@@ -61,9 +64,10 @@ class CaptchaForm
 
     /**
      * Returns the HTML
+     *
      * @return string
      */
-    public function getHtml()
+    public function getHtml(): ?string
     {
         return $this->sHtml;
     }
