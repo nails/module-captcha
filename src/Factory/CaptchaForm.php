@@ -2,6 +2,11 @@
 
 namespace Nails\Captcha\Factory;
 
+/**
+ * Class CaptchaForm
+ *
+ * @package Nails\Captcha\Factory
+ */
 class CaptchaForm
 {
     /**

@@ -4,12 +4,17 @@ namespace Nails\Captcha\Interfaces;
 
 use Nails\Captcha\Factory\CaptchaForm;
 
+/**
+ * Interface Driver
+ *
+ * @package Nails\Captcha\Interfaces
+ */
 interface Driver
 {
     /**
      * Returns the form markup for the captcha
      *
-     * @return \CaptchaForm
+     * @return CaptchaForm
      */
     public function generate(): CaptchaForm;
 

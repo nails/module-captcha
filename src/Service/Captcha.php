@@ -11,9 +11,11 @@
 
 namespace Nails\Captcha\Service;
 
+use Exception;
 use Nails\Captcha\Exception\CaptchaDriverException;
 use Nails\Captcha\Factory\CaptchaForm;
 use Nails\Common\Exception\FactoryException;
+use Nails\Common\Traits\ErrorHandling;
 use Nails\Factory;
 
 /**
@@ -23,7 +25,16 @@ use Nails\Factory;
  */
 class Captcha
 {
-    use \Nails\Common\Traits\ErrorHandling;
+    use ErrorHandling;
+
+    // --------------------------------------------------------------------------
+
+    /**
+     * The enabled captcha driver
+     *
+     * @var \Nails\Captcha\Interfaces\Driver
+     */
+    protected $oDriver;
 
     // --------------------------------------------------------------------------
 
@@ -62,13 +73,7 @@ class Captcha
 
             $oResponse = $this->oDriver->generate();
 
-            if (!($oResponse instanceof CaptchaForm)) {
-                throw new CaptchaDriverException(
-                    'Driver must return an instance of \Nails\Captcha\Factory\CaptchaForm.'
-                );
-            }
-
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $oResponse = Factory::factory('CaptchaForm', 'nails/module-captcha');
             $oResponse->setHtml(
                 '<p style="color: red; padding: 1rem; border: 1px solid red;">ERROR: ' . $e->getMessage() . '</p>'

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'services'    => [
+    'services'  => [
         'Captcha'       => function () {
             if (class_exists('\App\Captcha\Service\Captcha')) {
                 return new \App\Captcha\Service\Captcha();

@@ -12,16 +12,19 @@
 
 namespace Nails\Admin\Captcha;
 
-use Nails\Factory;
-use Nails\Admin\Helper;
+use Exception;
 use Nails\Admin\Controller\Base;
+use Nails\Admin\Helper;
+use Nails\Common\Exception\FactoryException;
+use Nails\Factory;
 
 class Settings extends Base
 {
     /**
      * Announces this controller's navGroups
      *
-     * @return stdClass
+     * @return object
+     * @throws FactoryException
      */
     public static function announce()
     {
@@ -58,6 +61,7 @@ class Settings extends Base
      * Manage Captcha settings
      *
      * @return void
+     * @throws FactoryException
      */
     public function index()
     {
@@ -91,7 +95,7 @@ class Settings extends Base
                     $oDb->trans_commit();
                     $this->data['success'] = 'Captcha settings were saved.';
 
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     $oDb->trans_rollback();
                     $this->data['error'] = 'There was a problem saving settings. ' . $e->getMessage();
                 }

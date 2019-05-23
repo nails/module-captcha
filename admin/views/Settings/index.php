@@ -1,35 +1,26 @@
 <?php
-
 $oInput = \Nails\Factory::service('Input');
-
 ?>
 <div class="group-invoice settings">
     <?php
-
     echo form_open();
     $sActiveTab = $this->input->post('active_tab') ?: 'tab-drivers';
     echo '<input type="hidden" name="active_tab" value="' . $sActiveTab . '" id="active-tab">';
-
     ?>
     <ul class="tabs" data-active-tab-input="#active-tab">
         <?php
-
         if (userHasPermission('admin:captcha:settings:drivers')) {
-
             ?>
             <li class="tab">
                 <a href="#" data-tab="tab-drivers">Drivers</a>
             </li>
             <?php
         }
-
         ?>
     </ul>
     <section class="tabs">
         <?php
-
         if (userHasPermission('admin:captcha:settings:drivers')) {
-
             ?>
             <div class="tab-page tab-drivers">
                 <?=adminHelper(
@@ -40,7 +31,6 @@ $oInput = \Nails\Factory::service('Input');
             </div>
             <?php
         }
-
         ?>
     </section>
     <p>

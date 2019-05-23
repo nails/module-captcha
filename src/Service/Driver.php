@@ -14,6 +14,11 @@ namespace Nails\Captcha\Service;
 
 use Nails\Common\Model\BaseDriver;
 
+/**
+ * Class Driver
+ *
+ * @package Nails\Captcha\Service
+ */
 class Driver extends BaseDriver
 {
     protected $sModule         = 'nails/module-captcha';
