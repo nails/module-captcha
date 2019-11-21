@@ -59,10 +59,10 @@ class Captcha
     /**
      * Calls the driver's boot() method
      */
-    public function boot()
+    public function boot(): void
     {
         if ($this->isEnabled()) {
-            return $this->oDriver->boot();
+            $this->oDriver->boot();
         }
     }
 
