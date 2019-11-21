@@ -15,9 +15,15 @@ namespace Nails\Admin\Captcha;
 use Exception;
 use Nails\Admin\Controller\Base;
 use Nails\Admin\Helper;
+use Nails\Captcha\Constants;
 use Nails\Common\Exception\FactoryException;
 use Nails\Factory;
 
+/**
+ * Class Settings
+ *
+ * @package Nails\Admin\Captcha
+ */
 class Settings extends Base
 {
     /**
@@ -71,7 +77,7 @@ class Settings extends Base
 
         $oDb                   = Factory::service('Database');
         $oInput                = Factory::service('Input');
-        $oCaptchaDriverService = Factory::service('CaptchaDriver', 'nails/module-captcha');
+        $oCaptchaDriverService = Factory::service('CaptchaDriver', Constants::MODULE_SLUG);
 
         if ($oInput->post()) {
 
@@ -109,7 +115,7 @@ class Settings extends Base
         // --------------------------------------------------------------------------
 
         //  Get data
-        $this->data['settings']                = appSetting(null, 'nails/module-captcha', true);
+        $this->data['settings']                = appSetting(null, Constants::MODULE_SLUG, true);
         $this->data['captcha_drivers']         = $oCaptchaDriverService->getAll();
         $this->data['captcha_drivers_enabled'] = $oCaptchaDriverService->getEnabledSlug();
 

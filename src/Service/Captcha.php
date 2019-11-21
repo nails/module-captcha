@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This model manages the production and verification of captchas
+ * This service manages the production and verification of captchas
  *
  * @package     Nails
  * @subpackage  module-captcha
@@ -12,6 +12,7 @@
 namespace Nails\Captcha\Service;
 
 use Exception;
+use Nails\Captcha\Constants;
 use Nails\Captcha\Exception\CaptchaDriverException;
 use Nails\Captcha\Factory\CaptchaForm;
 use Nails\Common\Exception\FactoryException;
@@ -46,10 +47,22 @@ class Captcha
     public function __construct()
     {
         /** @var Driver $oDriverService */
-        $oDriverService = Factory::service('CaptchaDriver', 'nails/module-captcha');
+        $oDriverService = Factory::service('CaptchaDriver', Constants::MODULE_SLUG);
         $sEnabled       = $oDriverService->getEnabledSlug();
         if (!empty($sEnabled)) {
             $this->oDriver = $oDriverService->getInstance($sEnabled);
+        }
+    }
+
+    // --------------------------------------------------------------------------
+
+    /**
+     * Calls the driver's boot() method
+     */
+    public function boot()
+    {
+        if ($this->isEnabled()) {
+            return $this->oDriver->boot();
         }
     }
 
@@ -74,7 +87,7 @@ class Captcha
             $oResponse = $this->oDriver->generate();
 
         } catch (Exception $e) {
-            $oResponse = Factory::factory('CaptchaForm', 'nails/module-captcha');
+            $oResponse = Factory::factory('CaptchaForm', Constants::MODULE_SLUG);
             $oResponse->setHtml(
                 '<p style="color: red; padding: 1rem; border: 1px solid red;">ERROR: ' . $e->getMessage() . '</p>'
             );

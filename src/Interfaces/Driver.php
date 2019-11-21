@@ -12,6 +12,13 @@ use Nails\Captcha\Factory\CaptchaForm;
 interface Driver
 {
     /**
+     * Called during system boot, allows the driver to load assets etc
+     */
+    public function boot(): void;
+
+    // --------------------------------------------------------------------------
+
+    /**
      * Returns the form markup for the captcha
      *
      * @return CaptchaForm

@@ -12,6 +12,7 @@
 
 namespace Nails\Captcha\Service;
 
+use Nails\Captcha\Constants;
 use Nails\Common\Model\BaseDriver;
 
 /**
@@ -21,7 +22,7 @@ use Nails\Common\Model\BaseDriver;
  */
 class Driver extends BaseDriver
 {
-    protected $sModule         = 'nails/module-captcha';
+    protected $sModule         = Constants::MODULE_SLUG;
     protected $sType           = 'captcha';
     protected $bEnableMultiple = false;
 }

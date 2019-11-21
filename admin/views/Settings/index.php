@@ -1,5 +1,12 @@
 <?php
-$oInput = \Nails\Factory::service('Input');
+
+use Nails\Captcha\Constants;
+use Nails\Common\Service\Input;
+use Nails\Factory;
+
+/** @var Input $oInput */
+$oInput = Factory::service('Input');
+
 ?>
 <div class="group-invoice settings">
     <?php
@@ -26,7 +33,7 @@ $oInput = \Nails\Factory::service('Input');
                 <?=adminHelper(
                     'loadSettingsDriverTable',
                     'CaptchaDriver',
-                    'nails/module-captcha'
+                    Constants::MODULE_SLUG
                 )?>
             </div>
             <?php
