@@ -93,16 +93,16 @@ class Settings extends Base
 
                 try {
 
-                    $oDb->trans_begin();
+                    $oDb->transaction()->start();
 
                     //  Drivers
                     $oCaptchaDriverService->saveEnabled($oInput->post($sKeyCaptchaDriver));
 
-                    $oDb->trans_commit();
+                    $oDb->transaction()->commit();
                     $this->data['success'] = 'Captcha settings were saved.';
 
                 } catch (Exception $e) {
-                    $oDb->trans_rollback();
+                    $oDb->transaction()->rollback();
                     $this->data['error'] = 'There was a problem saving settings. ' . $e->getMessage();
                 }
 
