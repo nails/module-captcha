@@ -23,6 +23,13 @@ class CaptchaForm
      */
     protected $sHtml;
 
+    /**
+     * Whether the captcha is invisible
+     *
+     * @var bool
+     */
+    protected $bIsInvisible = false;
+
     // --------------------------------------------------------------------------
 
     /**
@@ -75,5 +82,32 @@ class CaptchaForm
     public function getHtml(): ?string
     {
         return $this->sHtml;
+    }
+
+    // --------------------------------------------------------------------------
+
+    /**
+     * Sets whether the captcha is invisible
+     *
+     * @param string $sHtml The HTML to set
+     *
+     * @return $this
+     */
+    public function setInvisible(string $bIsInvisible): CaptchaForm
+    {
+        $this->bIsInvisible = $bIsInvisible;
+        return $this;
+    }
+
+    // --------------------------------------------------------------------------
+
+    /**
+     * Returns whether the captcha is invisible
+     *
+     * @return bool
+     */
+    public function isInvisible(): bool
+    {
+        return $this->bIsInvisible;
     }
 }
