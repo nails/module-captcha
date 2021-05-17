@@ -33,6 +33,9 @@
             "Nails\\Captcha\\": "src/"
         }
     },
+    "suggest": {
+        "nails/driver-captcha-recaptcha": "Adds support for Google reCAPTCHA."
+    },
     "extra": {
         "nails": {
             "moduleName": "captcha",
