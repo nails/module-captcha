@@ -89,11 +89,11 @@ class CaptchaForm
     /**
      * Sets whether the captcha is invisible
      *
-     * @param string $sHtml The HTML to set
+     * @param bool $bIsInvisible Whether the captcha is invisible or not
      *
      * @return $this
      */
-    public function setInvisible(string $bIsInvisible): CaptchaForm
+    public function setInvisible(bool $bIsInvisible): CaptchaForm
     {
         $this->bIsInvisible = $bIsInvisible;
         return $this;
