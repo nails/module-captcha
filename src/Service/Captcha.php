@@ -106,7 +106,7 @@ class Captcha
      * @return bool
      * @throws CaptchaDriverException
      */
-    public function verify(string $sToken = null): bool
+    public function verify(?string $sToken = null): bool
     {
         if ($this->isEnabled()) {
             return $this->oDriver->verify($sToken);

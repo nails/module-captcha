@@ -25,7 +25,7 @@ if (!function_exists('captchaGenerate')) {
 }
 
 if (!function_exists('captchaVerify')) {
-    function captchaVerify(string $sToken = null): bool
+    function captchaVerify(?string $sToken = null): bool
     {
         /** @var Captcha $oCaptcha */
         $oCaptcha = Factory::service('Captcha', Constants::MODULE_SLUG);
