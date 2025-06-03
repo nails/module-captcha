@@ -34,5 +34,5 @@ interface Driver
      *
      * @return bool
      */
-    public function verify(string $sToken = null): bool;
+    public function verify(?string $sToken = null): bool;
 }
