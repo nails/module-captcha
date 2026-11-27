@@ -2,6 +2,7 @@
 
 namespace Nails\Captcha\Settings;
 
+use Nails\Captcha\Admin\Permission;
 use Nails\Captcha\Service\Driver;
 use Nails\Common\Helper\Form;
 use Nails\Common\Interfaces;
@@ -30,9 +31,9 @@ class General implements Interfaces\Component\Settings
     /**
      * @inheritDoc
      */
-    public function getPermissions(): array
+    public function getPermission(): string
     {
-        return [];
+        return Permission\Settings\General::class;
     }
 
     // --------------------------------------------------------------------------
